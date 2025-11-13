@@ -1,0 +1,19 @@
+{
+    "name": "sample-gladly-webhook-integration",
+    "version": "1.0.0",
+    "description": "Sample AWS Lambda function for handling webhook events from Osano",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --silent"
+    },
+    "author": "Osano",
+    "engines": {
+        "node": ">=22.x"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.24.7",
+        "@babel/preset-env": "^7.24.7",
+        "jest": "^30.2.0"
+    }
+}
