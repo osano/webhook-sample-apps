@@ -2,6 +2,8 @@
 
 A sample AWS Lambda function that demonstrates how to handle webhook events from Osano's Subject Rights product with Gladly. This integration automatically handles data subject requests by summarizing or deleting customer data from Gladly based on webhook events from Osano.
 
+NOTE: This integration has not been tested. It is implemented according to the https://developer.gladly.com/, but there is no guarantee that it will work as expected.
+
 ## Overview
 
 This Lambda function processes webhook payloads from Osano and performs the following actions:
