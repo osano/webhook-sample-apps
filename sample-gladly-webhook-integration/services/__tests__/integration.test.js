@@ -104,7 +104,7 @@ describe("integration.js", () => {
 
       expect(getCustomerProfilesSpy).toHaveBeenCalledWith(email);
       expect(getConversationsSpy).toHaveBeenCalledWith("profile-1");
-      expect(closeConversationSpy).toHaveBeenCalledWith("profile-1", "conv-1");
+      expect(closeConversationSpy).toHaveBeenCalledWith("conv-1");
       expect(deleteCustomerProfileSpy).toHaveBeenCalledWith("profile-1");
       expect(attachSummaryToActionItemSpy).toHaveBeenCalledWith(
         actionItemId,
@@ -212,7 +212,7 @@ describe("integration.js", () => {
       await deleteData(actionItemId, email);
 
       expect(getConversationsSpy).toHaveBeenCalledWith("profile-1");
-      expect(closeConversationSpy).toHaveBeenCalledWith("profile-1", "conv-1");
+      expect(closeConversationSpy).toHaveBeenCalledWith("conv-1");
       expect(deleteProfileSpy).toHaveBeenCalledWith("profile-1");
     });
 
@@ -245,7 +245,7 @@ describe("integration.js", () => {
 
       expect(getConversationsSpy).toHaveBeenCalledWith("profile-1");
       expect(closeConversationSpy).toHaveBeenCalledTimes(1);
-      expect(closeConversationSpy).toHaveBeenCalledWith("profile-1", "conv-2");
+      expect(closeConversationSpy).toHaveBeenCalledWith("conv-2");
       expect(deleteProfileSpy).toHaveBeenCalledWith("profile-1");
     });
   });

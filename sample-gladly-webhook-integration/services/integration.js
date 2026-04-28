@@ -54,7 +54,7 @@ export const deleteData = async (actionItemId, email) => {
       if (conversation.status === CLOSED_CONVERSATION_STATUS) {
         continue;
       }
-      await closeConversation(customerProfile.id, conversation.id);
+      await closeConversation(conversation.id);
     }
 
     // Delete the customer profile using the Gladly API
