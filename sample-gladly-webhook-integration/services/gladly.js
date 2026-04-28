@@ -48,7 +48,7 @@ export const getCustomerProfiles = async (email) => {
  */
 export const getConversations = async (customerProfileId) => {
   const response = await authenticatedFetch(
-    `${GLADLY_API_URL}/v1/customer-profiles/${customerProfileId}/conversations`,
+    `${GLADLY_API_URL}/v1/customers/${customerProfileId}/conversations`,
     { method: "GET" }
   );
 
@@ -71,14 +71,13 @@ export const getConversations = async (customerProfileId) => {
 
 /**
  * Closes a conversation by ID for a given customer profile
- * @param {string} customerProfileId - The ID of the customer profile
  * @param {string} conversationId - The ID of the conversation
  * @returns {Promise<Object>} - The response from the Gladly API
  * @throws {Error} - If the customer profile conversation was not closed
  */
-export const closeConversation = async (customerProfileId, conversationId) => {
+export const closeConversation = async (conversationId) => {
   const response = await authenticatedFetch(
-    `${GLADLY_API_URL}/v1/customer-profiles/${customerProfileId}/conversations/${conversationId}`,
+    `${GLADLY_API_URL}/v1/conversations/${conversationId}`,
     { method: "PATCH", body: JSON.stringify({ status: "CLOSED", force: true }) }
   );
 
