@@ -37,6 +37,33 @@ describe("gladly.js", () => {
         `Failed to get customer profile conversations for customer profile profile-1 via Gladly API: HTTP 404 - Not Found: ${responseBody}`
       );
     });
+
+    it("should return the conversations when the Gladly-Limited-Data header is false", async () => {
+      const conversations = [{ id: "conv-1", status: "OPEN" }];
+      global.fetch.mockResolvedValue(
+        new Response(JSON.stringify(conversations), {
+          status: 200,
+          headers: { "Gladly-Limited-Data": false },
+        })
+      );
+
+      await expect(getConversations("profile-1")).resolves.toEqual(
+        conversations
+      );
+    });
+
+    it("should throw when the Gladly-Limited-Data header is true", async () => {
+      global.fetch.mockResolvedValue(
+        new Response("[]", {
+          status: 200,
+          headers: { "Gladly-Limited-Data": true },
+        })
+      );
+
+      await expect(getConversations("profile-1")).rejects.toThrow(
+        "Customer profile-1 has more conversations than returned (Gladly-Limited-Data: true). Manual processing required."
+      );
+    });
   });
 
   describe("closeConversation", () => {
