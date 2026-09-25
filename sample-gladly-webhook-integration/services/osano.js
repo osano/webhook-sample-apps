@@ -23,8 +23,9 @@ export const attachSummaryToActionItem = async (actionItemId, fileContent) => {
   );
 
   if (!response.ok) {
+    const responseBody = await response.text();
     throw new Error(
-      `Failed to attach summary to action item: HTTP ${response.status}: ${response.statusText}`
+      `Failed to attach summary to action item ${actionItemId}: HTTP ${response.status} - ${response.statusText}: ${responseBody}`
     );
   }
 
@@ -52,8 +53,9 @@ export const markActionItemCompleted = async (actionItemId, internalNotes) => {
   );
 
   if (!response.ok) {
+    const responseBody = await response.text();
     throw new Error(
-      `Failed to mark action item as completed: HTTP ${response.status}: ${response.statusText}`
+      `Failed to mark action item ${actionItemId} as completed: HTTP ${response.status} - ${response.statusText}: ${responseBody}`
     );
   }
 
