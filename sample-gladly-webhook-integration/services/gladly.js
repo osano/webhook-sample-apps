@@ -31,8 +31,9 @@ export const getCustomerProfiles = async (email) => {
   );
 
   if (!response.ok) {
+    const responseBody = await response.text();
     throw new Error(
-      `Failed to get customer profiles for email ${email} via Gladly API: HTTP ${response.status}: ${response.statusText}`
+      `Failed to get customer profiles via Gladly API: HTTP ${response.status} - ${response.statusText}: ${responseBody}`
     );
   }
 
@@ -53,8 +54,9 @@ export const getConversations = async (customerProfileId) => {
   );
 
   if (!response.ok) {
+    const responseBody = await response.text();
     throw new Error(
-      `Failed to get customer profile conversations for customer profile ${customerProfileId} via Gladly API: HTTP ${response.status}: ${response.statusText}`
+      `Failed to get customer profile conversations for customer profile ${customerProfileId} via Gladly API: HTTP ${response.status} - ${response.statusText}: ${responseBody}`
     );
   }
 
@@ -78,12 +80,16 @@ export const getConversations = async (customerProfileId) => {
 export const closeConversation = async (conversationId) => {
   const response = await authenticatedFetch(
     `${GLADLY_API_URL}/v1/conversations/${conversationId}`,
-    { method: "PATCH", body: JSON.stringify({ status: "CLOSED", force: true }) }
+    {
+      method: "PATCH",
+      body: JSON.stringify({ status: { value: "CLOSED", force: true } }),
+    }
   );
 
   if (!response.ok) {
+    const responseBody = await response.text();
     throw new Error(
-      `Failed to close customer profile conversation via Gladly API: HTTP ${response.status}: ${response.statusText}`
+      `Failed to close customer profile conversation ${conversationId} via Gladly API: HTTP ${response.status} - ${response.statusText}: ${responseBody}`
     );
   }
 
@@ -103,8 +109,9 @@ export const deleteCustomerProfile = async (customerProfileId) => {
   );
 
   if (!response.ok) {
+    const responseBody = await response.text();
     throw new Error(
-      `Failed to delete customer profile via Gladly API: HTTP ${response.status}: ${response.statusText}`
+      `Failed to delete customer profile ${customerProfileId} via Gladly API: HTTP ${response.status} - ${response.statusText}: ${responseBody}`
     );
   }
 
