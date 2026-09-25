@@ -62,9 +62,10 @@ export const getConversations = async (customerProfileId) => {
 
   // The Gladly-Limited-Data header flag in the response will indicate if the customer has more conversations than returned.
   // If set, the customer will need to be manually processed.
-  if (response.headers.get(GLADLY_LIMITED_DATA_HEADER)) {
+  const limitedData = response.headers.get(GLADLY_LIMITED_DATA_HEADER);
+  if (limitedData?.toLowerCase() === "true") {
     throw new Error(
-      "Customer has more conversations than returned. Manual processing required."
+      `Customer ${customerProfileId} has more conversations than returned (${GLADLY_LIMITED_DATA_HEADER}: ${limitedData}). Manual processing required.`
     );
   }
 
