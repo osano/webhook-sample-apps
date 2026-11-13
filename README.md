@@ -1,6 +1,6 @@
 # Webhook Sample Apps
 
-This repository provides Node.js sample applications demonstrating common use cases for integrating with the Osano Customer REST API and Webhooks.
+This repository provides Node.js sample applications demonstrating common use cases for integrating with the Osano Subject Rights API and webhooks.
 
 ## Setup
 
